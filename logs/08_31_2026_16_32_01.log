@@ -1,0 +1,7 @@
+2026-08-31 16:32:03,653 - root - INFO - Entered the data ingestion method 
+2026-08-31 16:32:03,673 - root - INFO - Read the dataset as dataframe
+2026-08-31 16:32:03,768 - root - INFO - Raw data saved successfully
+2026-08-31 16:32:03,768 - root - INFO - Train test split initiated
+2026-08-31 16:32:03,861 - root - INFO - Ingestion of the data is completed
+2026-08-31 16:32:03,939 - root - INFO - Numerical columns standard scaling completed
+2026-08-31 16:32:03,940 - root - INFO - Applying preprocessing object on training dataframe and testing dataframe.

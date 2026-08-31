@@ -1,0 +1,5 @@
+2026-08-31 16:58:09,843 - root - INFO - Entered the data ingestion method 
+2026-08-31 16:58:09,862 - root - INFO - Read the dataset as dataframe
+2026-08-31 16:58:09,956 - root - INFO - Raw data saved successfully
+2026-08-31 16:58:09,956 - root - INFO - Train test split initiated
+2026-08-31 16:58:10,054 - root - INFO - Ingestion of the data is completed
