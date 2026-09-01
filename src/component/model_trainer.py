@@ -43,44 +43,47 @@ class ModelTrainer:
                             "Decision Tree": DecisionTreeRegressor(),
                             "Gradient Boosting": GradientBoostingRegressor(),
                             "Linear Regression": LinearRegression(),
-                            "XGBRegressor": XGBRegressor(),
-                            "CatBoosting Regressor": CatBoostRegressor(verbose=False),
-                            "AdaBoost Regressor": AdaBoostRegressor(),
+                            "XGBRegressor": XGBRegressor(random_state=42,
+                                        n_jobs=-1,
+                                        objective="reg:squarederror"),
+                            "CatBoosting Regressor": CatBoostRegressor(verbose=True,random_state=42),
+                            "AdaBoost Regressor": AdaBoostRegressor(random_state=42),
                         }
             params={
                             "Decision Tree": {
                                 'criterion':['squared_error', 'absolute_error'],
-                                # 'splitter':['best','random'],
-                                # 'max_features':['sqrt','log2'],
+                                "max_depth": [None, 5, 10, 20],
+                                "min_samples_split": [2, 5, 10]
                             },
                             "Random Forest":{
-                                # 'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
-                             
-                                # 'max_features':['sqrt','log2',None],
-                                'n_estimators': [8,16,32,64,128,256]
+                                     "n_estimators": [100, 200],
+                                     "max_depth": [None, 10, 20],
+                                     "min_samples_split": [2, 5],
+                                    "max_features": ["sqrt", 1.0]
                             },
                             "Gradient Boosting":{
-                                # 'loss':['squared_error', 'huber', 'absolute_error', 'quantile'],
-                                'learning_rate':[.1,.01,.05,.001],
-                                'subsample':[0.6,0.7,0.75,0.8,0.85,0.9],
-                                # 'criterion':['squared_error', 'friedman_mse'],
-                                # 'max_features':['auto','sqrt','log2'],
-                                'n_estimators': [8,16,32,64,128,256]
+                                        "n_estimators": [100, 200],
+                                        "learning_rate": [0.05, 0.1],
+                                        "max_depth": [3, 5],
+                                       "subsample": [0.8, 1.0]
+
                             },
                             "Linear Regression":{},
                             "XGBRegressor":{
-                                'learning_rate':[.1,.01,.05,.001],
-                                'n_estimators': [8,16,32,64,128,256]
+                                "n_estimators": [100, 200],
+        "learning_rate": [0.05, 0.1],
+        "max_depth": [3, 6],
+        "subsample": [0.8, 1.0],
+        "colsample_bytree": [0.8, 1.0]
                             },
                             "CatBoosting Regressor":{
-                                'depth': [6,8,10],
-                                'learning_rate': [0.01, 0.05, 0.1],
-                                'iterations': [30, 50, 100]
+                                "iterations": [100, 200],
+                                "depth": [6, 8],
+                                "learning_rate": [0.05, 0.1]
                             },
                             "AdaBoost Regressor":{
-                                'learning_rate':[.1,.01,0.5,.001],
-                                # 'loss':['linear','square','exponential'],
-                                'n_estimators': [8,16,32,64,128,256]
+                                "n_estimators": [50, 100, 200],
+                                "learning_rate": [0.05, 0.1, 0.5]
                             }
                             
                         }

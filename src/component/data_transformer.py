@@ -26,7 +26,7 @@ class DataTransformation:
     def get_data_transformer_object(self):
 
         try:
-            numerical_columns = ['longitude', 'latitude', 'housing_median_age', 'total_rooms', 'total_bedrooms', 'population', 'households', 'median_income']
+            numerical_columns = ['MedInc', 'HouseAge', 'AveRooms', 'AveBedrms', 'Population', 'AveOccup', 'Latitude', 'Longitude']
             num_pipeline = Pipeline(
                 steps=[
                 ('imputer',SimpleImputer(strategy='median')),
@@ -47,32 +47,40 @@ class DataTransformation:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
 
-        # Print actual column names to confirm
-            print("Actual DataFrame columns:", train_df.columns.tolist())
             
-            preprocessor_obj=self.get_data_transformer_object()
+            preprocessing_obj=self.get_data_transformer_object()
 
             target_column_name="median_house_value"
-            input_features=train_df.drop(columns=['median_house_value'])
-            target_feature=train_df['median_house_value']
+            
 
-            input_features_test=test_df.drop(columns=['median_house_value'])
-            target_feature_test=test_df['median_house_value']
+            input_feature_train_df=train_df.drop(columns=[target_column_name])
+            target_feature_train_df=train_df[target_column_name]
+
+            input_feature_test_df=test_df.drop(columns=[target_column_name])
+            target_feature_test_df=test_df[target_column_name]
+
             logging.info(
                 f"Applying preprocessing object on training dataframe and testing dataframe."
             )
-            train_arr=preprocessor_obj.fit_transform(input_features)
-            test_arr=preprocessor_obj.transform(input_features_test)
+
+            input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
+            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
+
+            train_arr = np.c_[
+                input_feature_train_arr, np.array(target_feature_train_df)
+            ]
+            test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
 
             logging.info(f"Saved preprocessing object.")
+
             save_object(
                 file_path=self.data_transformation_config.preprocessor_obj_file_path,
-                obj=preprocessor_obj
+                obj=preprocessing_obj
             )
             return (
                 train_arr,
                 test_arr,
-                preprocessor_obj
+                preprocessing_obj
             )
         except Exception as e:
             raise CustomException(e,sys)

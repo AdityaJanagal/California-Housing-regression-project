@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Predict House Price</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 75px;
+            padding: 0 8%;
+            background: #0f172a;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+
+            padding: 9px 18px;
+
+            border: 1px solid #475569;
+            border-radius: 7px;
+
+            transition: 0.3s;
+        }
+
+        .home-link:hover {
+            background: white;
+            color: #0f172a;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: 92%;
+            max-width: 1050px;
+
+            margin: 45px auto;
+        }
+
+
+        /* HEADING */
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .heading p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+
+        /* FORM */
+
+        .form-card {
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 10px 30px rgba(15,23,42,0.08);
+        }
+
+        .section-title {
+            font-size: 21px;
+            font-weight: bold;
+
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+
+            color: #334155;
+
+            margin-bottom: 8px;
+        }
+
+        .feature-name {
+            font-weight: normal;
+            color: #94a3b8;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 0 0 3px rgba(56,189,248,0.15);
+        }
+
+        .hint {
+            margin-top: 6px;
+
+            font-size: 12px;
+
+            color: #94a3b8;
+        }
+
+
+        /* BUTTON */
+
+        .button-container {
+            margin-top: 35px;
+        }
+
+        .predict-button {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #0f172a;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .predict-button:hover {
+            background: #1e293b;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* RESULT */
+
+        .result {
+            margin-top: 30px;
+
+            padding: 28px;
+
+            text-align: center;
+
+            border-radius: 12px;
+
+            background: #ecfeff;
+
+            border: 1px solid #a5f3fc;
+        }
+
+        .result-title {
+            color: #0e7490;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .result-value {
+            color: #0f172a;
+
+            font-size: 35px;
+
+            font-weight: bold;
+        }
+
+
+        /* INFO */
+
+        .info {
+            margin-top: 25px;
+
+            padding: 18px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-card {
+                padding: 25px;
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+
+            nav {
+                padding: 0 5%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        🏠 California Housing AI
+    </div>
+
+    <a href="{{ url_for('index') }}" class="home-link">
+        ← Home
+    </a>
+
+</nav>
+
+
+
+<!-- MAIN -->
+
+<div class="container">
+
+
+    <!-- HEADING -->
+
+    <div class="heading">
+
+        <h1>
+            California House Price Prediction
+        </h1>
+
+        <p>
+            Enter the housing information below to generate
+            a machine learning prediction.
+        </p>
+
+    </div>
+
+
+
+    <!-- FORM CARD -->
+
+    <div class="form-card">
+
+        <div class="section-title">
+            🏡 Housing Information
+        </div>
+
+
+        <form
+            action="{{ url_for('predict_datapoint') }}"
+            method="POST"
+        >
+
+
+            <div class="form-grid">
+
+
+                <!-- MEDINC -->
+
+                <div class="form-group">
+
+                    <label for="MedInc">
+                        Median Income
+                        <span class="feature-name">(MedInc)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="MedInc"
+                        name="MedInc"
+                        placeholder="Example: 8.3252"
+                        required
+                    >
+
+                    <span class="hint">
+                        Median income of households in the block.
+                    </span>
+
+                </div>
+
+
+
+                <!-- HOUSE AGE -->
+
+                <div class="form-group">
+
+                    <label for="HouseAge">
+                        Housing Median Age
+                        <span class="feature-name">(HouseAge)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="HouseAge"
+                        name="HouseAge"
+                        placeholder="Example: 41"
+                        required
+                    >
+
+                    <span class="hint">
+                        Median age of houses in the block.
+                    </span>
+
+                </div>
+
+
+
+                <!-- AVERAGE ROOMS -->
+
+                <div class="form-group">
+
+                    <label for="AveRooms">
+                        Average Rooms
+                        <span class="feature-name">(AveRooms)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="AveRooms"
+                        name="AveRooms"
+                        placeholder="Example: 6.98"
+                        required
+                    >
+
+                    <span class="hint">
+                        Average number of rooms per household.
+                    </span>
+
+                </div>
+
+
+
+                <!-- AVERAGE BEDROOMS -->
+
+                <div class="form-group">
+
+                    <label for="AveBedrms">
+                        Average Bedrooms
+                        <span class="feature-name">(AveBedrms)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="AveBedrms"
+                        name="AveBedrms"
+                        placeholder="Example: 1.02"
+                        required
+                    >
+
+                    <span class="hint">
+                        Average number of bedrooms per household.
+                    </span>
+
+                </div>
+
+
+
+                <!-- POPULATION -->
+
+                <div class="form-group">
+
+                    <label for="Population">
+                        Population
+                        <span class="feature-name">(Population)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="Population"
+                        name="Population"
+                        placeholder="Example: 322"
+                        required
+                    >
+
+                    <span class="hint">
+                        Total population of the block.
+                    </span>
+
+                </div>
+
+
+
+                <!-- AVERAGE OCCUPANCY -->
+
+                <div class="form-group">
+
+                    <label for="AveOccup">
+                        Average Occupancy
+                        <span class="feature-name">(AveOccup)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="AveOccup"
+                        name="AveOccup"
+                        placeholder="Example: 2.55"
+                        required
+                    >
+
+                    <span class="hint">
+                        Average number of people per household.
+                    </span>
+
+                </div>
+
+
+
+                <!-- LATITUDE -->
+
+                <div class="form-group">
+
+                    <label for="Latitude">
+                        Latitude
+                        <span class="feature-name">(Latitude)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="Latitude"
+                        name="Latitude"
+                        placeholder="Example: 37.88"
+                        required
+                    >
+
+                    <span class="hint">
+                        Geographic latitude of the location.
+                    </span>
+
+                </div>
+
+
+
+                <!-- LONGITUDE -->
+
+                <div class="form-group">
+
+                    <label for="Longitude">
+                        Longitude
+                        <span class="feature-name">(Longitude)</span>
+                    </label>
+
+                    <input
+                        type="number"
+                        step="any"
+                        id="Longitude"
+                        name="Longitude"
+                        placeholder="Example: -122.23"
+                        required
+                    >
+
+                    <span class="hint">
+                        Geographic longitude of the location.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+
+            <div class="button-container">
+
+                <button
+                    type="submit"
+                    class="predict-button"
+                >
+                    🔮 Predict House Price
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+
+        <!-- RESULT -->
+
+        {% if results %}
+
+        <div class="result">
+
+            <div class="result-title">
+                Estimated Median House Value
+            </div>
+
+            <div class="result-value">
+                ${{ results }}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- MODEL INFO -->
+
+        <div class="info">
+
+            <strong>Model:</strong> XGBoost Regression
+
+            <br>
+
+            <strong>Test R² Score:</strong> 0.8442
+
+            <br>
+
+            The values entered above are passed to the
+            preprocessing pipeline. The trained scaler
+            transforms the features before they are passed
+            to the machine learning model.
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

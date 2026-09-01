@@ -1,0 +1,14 @@
+2026-09-01 17:23:45,993 - werkzeug - WARNING -  * Debugger is active!
+2026-09-01 17:23:45,995 - werkzeug - INFO -  * Debugger PIN: 934-867-949
+2026-09-01 17:23:46,630 - root - INFO - Dataframe Gathered
+2026-09-01 17:23:48,781 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:48] "POST /predictdata HTTP/1.1" 200 -
+2026-09-01 17:23:49,925 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:49] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:24:08,678 - root - INFO - Dataframe Gathered
+2026-09-01 17:24:08,708 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:24:08] "POST /predictdata HTTP/1.1" 200 -
+2026-09-01 17:24:10,615 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:24:10] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:24:20,842 - root - INFO - Dataframe Gathered
+2026-09-01 17:24:20,868 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:24:20] "POST /predictdata HTTP/1.1" 200 -
+2026-09-01 17:24:22,881 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:24:22] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:24:24,104 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:24:24] "GET / HTTP/1.1" 200 -
+2026-09-01 17:24:54,779 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:24:54] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:27:05,067 - werkzeug - INFO -  * Detected change in 'C:\\Regression model\\ex.py', reloading

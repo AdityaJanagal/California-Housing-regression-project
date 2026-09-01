@@ -1,0 +1,14 @@
+2026-09-01 17:22:29,860 - werkzeug - WARNING -  * Debugger is active!
+2026-09-01 17:22:29,861 - werkzeug - INFO -  * Debugger PIN: 934-867-949
+2026-09-01 17:22:30,484 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:22:30] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -
+2026-09-01 17:22:30,528 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:22:30] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-09-01 17:22:30,746 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:22:30] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-09-01 17:22:31,061 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:22:31] "GET /predictdata?__debugger__=yes&cmd=resource&f=console.png&s=BsMkODmEUAdrfyeUANyr HTTP/1.1" 200 -
+2026-09-01 17:22:31,321 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:22:31] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2026-09-01 17:22:33,352 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:22:33] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:23:09,181 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:09] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -
+2026-09-01 17:23:09,488 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:09] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2026-09-01 17:23:09,505 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:09] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2026-09-01 17:23:09,818 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:09] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=console.png&s=BsMkODmEUAdrfyeUANyr HTTP/1.1[0m" 304 -
+2026-09-01 17:23:10,077 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:23:10] "[36mGET /predictdata?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2026-09-01 17:23:43,980 - werkzeug - INFO -  * Detected change in 'C:\\Regression model\\src\\pipeline\\prediction_pipeline.py', reloading

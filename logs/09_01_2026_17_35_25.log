@@ -1,0 +1,6 @@
+2026-09-01 17:35:26,452 - werkzeug - WARNING -  * Debugger is active!
+2026-09-01 17:35:26,454 - werkzeug - INFO -  * Debugger PIN: 934-867-949
+2026-09-01 17:35:28,083 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:35:28] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:35:31,113 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:35:31] "GET /predictdata HTTP/1.1" 200 -
+2026-09-01 17:35:54,607 - root - INFO - Dataframe Gathered
+2026-09-01 17:35:56,695 - werkzeug - INFO - 127.0.0.1 - - [01/Sep/2026 17:35:56] "POST /predictdata HTTP/1.1" 200 -
